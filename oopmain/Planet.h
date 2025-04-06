@@ -26,6 +26,10 @@ public:
         std::string radiusString = stream.str();
         return "Название планеты: " + name + ". Радиус = " + radiusString + " км.";
     }
+
+    std::string getName() override {
+        return name;
+    }
 };
 
 #endif

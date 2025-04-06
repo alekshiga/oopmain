@@ -24,6 +24,10 @@ public:
     std::string getDescription() override {
         return "Название звезды " + name + ". Температура = " + std::to_string(temperature) + " C.";
     }
+
+    std::string getName() override {
+        return name;
+    }
 };
 
 #endif

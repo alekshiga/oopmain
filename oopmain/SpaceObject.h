@@ -11,6 +11,7 @@ public:
     virtual void display() = 0;
     virtual std::string getDescription() = 0;
     virtual ~SpaceObject() {} // Деструктор
+    virtual std::string getName() = 0;
 };
 
 #endif

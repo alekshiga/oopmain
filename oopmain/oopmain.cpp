@@ -2,6 +2,7 @@
 #include "SpaceObject.h"
 #include "Planet.h"
 #include "Star.h"
+#include "Satelite.h"
 #include "Scene.h"
 #include "Excursion.h"
 #include "LinearExcursion.h"
@@ -19,16 +20,18 @@ int main() {
     // создание объектов Земля и Солнце
     Planet* earth = new Planet("Земля", 6378.0);
     Star* sun = new Star("Солнце", 696340.0, 5778);
-    Planet* mars = new Planet("Марс", 3389.5);
+    //Planet* mars = new Planet("Марс", 3389.5);
+    Satelite* moon = new Satelite("Луна", earth);
 
     earth->display();
     sun->display();
-    mars->display();
+    //mars->display();
 
     std::vector<SpaceObject*> routeSolarSystem;
     routeSolarSystem.push_back(sun);
     routeSolarSystem.push_back(earth);
-    routeSolarSystem.push_back(mars);
+    routeSolarSystem.push_back(moon);
+    //routeSolarSystem.push_back(mars);
     try {
         LinearExcursion* solarSystemExcursion = new LinearExcursion(routeSolarSystem, "Путешествие по Солнечной Системе.");
         Scene* scene = Scene::getInstance(solarSystemExcursion);
@@ -57,7 +60,8 @@ int main() {
     // очень важно освободить память вручную, так как конструкторы в C++ не делают это автоматически
     delete earth;
     delete sun;
-    delete mars;
+    delete moon;
+    //delete mars;
     return 0;
 }
 

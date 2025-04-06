@@ -136,10 +136,14 @@
     <ClInclude Include="InteractiveExcursion.h" />
     <ClInclude Include="LinearExcursion.h" />
     <ClInclude Include="Planet.h" />
+    <ClInclude Include="Satelite.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpaceObject.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Visitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

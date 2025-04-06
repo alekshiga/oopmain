@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AudioFile">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACoAEAAAAAAgAACAAA=</HashCode>
+      <FileName>AudioFile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Excursion">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAggAAAAAABAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Excursion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractiveExcursion">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQggABAAIABAAgIAAEAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>InteractiveExcursion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LinearExcursion">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAogAAAAIABAAAJAAAAJAAACAAAAAAAAAAA=</HashCode>
+      <FileName>LinearExcursion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Planet">
+    <Position X="3.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAgAAAAAAAAAAAAAAEEAAAAAAIEAAAAAAA=</HashCode>
+      <FileName>Planet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scene">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAARgAAAAgAAAAEAAQABAAAQABAAAAAAAAAA=</HashCode>
+      <FileName>Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceObject">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAQAAAAAAEAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>SpaceObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Star">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAgAAAAAAAAAAAAAAEEAAAAgAQEAAAAAAA=</HashCode>
+      <FileName>Star.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Visitor">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAEAAAAAQAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Visitor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Satelite">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAABAAAAAAAAAAEEAgAAAAAEAAAAAAA=</HashCode>
+      <FileName>Satelite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
