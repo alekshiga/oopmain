@@ -12,9 +12,10 @@ class Planet : public SpaceObject {
 private:
     std::string name;
     float radius;
+    AudioFile* audioFile;
 
 public:
-    Planet(std::string name, float radius) : name(name), radius(radius) {}
+    Planet(std::string name, float radius, AudioFile* audioFile) : name(name), radius(radius), audioFile(audioFile) {}
 
     void display() override {
         std::cout << "Отображение планеты: " << name << "\n";
@@ -29,6 +30,10 @@ public:
 
     std::string getName() override {
         return name;
+    }
+
+    void playAudio() override {
+        audioFile->play();
     }
 };
 

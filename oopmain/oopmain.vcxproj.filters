@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\SpaceObjects">
+      <UniqueIdentifier>{3e0a6521-5cec-44bb-a407-838bc1fc9ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Audio">
+      <UniqueIdentifier>{2de4b860-e4fa-4033-8cf7-070012ee8662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Excursion">
+      <UniqueIdentifier>{f9429197-33fe-4a94-a396-31aee1c45c49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oopmain.cpp">
@@ -23,34 +32,45 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Excursion.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpaceObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Star.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Planet.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LinearExcursion.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InteractiveExcursion.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Visitor.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioFile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Satelite.h" />
+    <ClInclude Include="Asteroid.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Planet.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceObject.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceObjectProxy.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Satelite.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioFile.h">
+      <Filter>Source Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Excursion.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractiveExcursion.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearExcursion.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceObjectType.h">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

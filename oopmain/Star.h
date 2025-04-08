@@ -11,11 +11,11 @@
 class Star : public SpaceObject {
 private:
     std::string name;
-    float radius;
     int temperature;
+    AudioFile* audioFile;
 
 public:
-    Star(std::string name, float radius, int temperature) : name(name), temperature(temperature), radius(radius) {}
+    Star(std::string name, int temperature, AudioFile* audioFile) : name(name), temperature(temperature), audioFile(audioFile) {}
 
     void display() override {
         std::cout << "Отображение звезды: " << name << "\n";
@@ -27,6 +27,10 @@ public:
 
     std::string getName() override {
         return name;
+    }
+
+    void playAudio() override {
+        audioFile->play();
     }
 };
 

@@ -5,18 +5,18 @@
 
 class AudioFile {
 private:
-    std::string filePath;
+    std::string fileName;
     int volume;
 
 public:
-    AudioFile(std::string filePath, int volume) : filePath(filePath), volume(volume) {}
+    AudioFile(std::string fileName, int volume) : fileName(fileName), volume(volume) {}
 
     void play() {
-        std::cout << "Проигрывание аудио: " << filePath << " на громкости " << volume << "\n";
+        std::cout << "Проигрывание аудио: " << fileName << " на громкости " << volume << "\n";
     }
     
     void stop() {
-        std::cout << "Остановка аудио: " << filePath << "\n";
+        std::cout << "Остановка аудио: " << fileName << "\n";
     }
     void setVolume(int volume) {
         this->volume = volume;

@@ -3,15 +3,19 @@
 #define SPACEOBJECT_H
 
 #include <string>
+#include "AudioFile.h"
 
 // интерфейс, который реализуют различные типы космических объектов
 
 class SpaceObject {
 public:
-    virtual void display() = 0;
-    virtual std::string getDescription() = 0;
-    virtual ~SpaceObject() {} // Деструктор
-    virtual std::string getName() = 0;
+	AudioFile* audioFile;
+
+	virtual void display() = 0;
+	virtual std::string getDescription() = 0;
+	virtual ~SpaceObject() {}
+	virtual std::string getName() = 0;
+	virtual void playAudio() = 0;
 };
 
 #endif

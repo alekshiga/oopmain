@@ -131,6 +131,7 @@
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroid.h" />
     <ClInclude Include="AudioFile.h" />
     <ClInclude Include="Excursion.h" />
     <ClInclude Include="InteractiveExcursion.h" />
@@ -139,6 +140,8 @@
     <ClInclude Include="Satelite.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpaceObject.h" />
+    <ClInclude Include="SpaceObjectProxy.h" />
+    <ClInclude Include="SpaceObjectType.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Visitor.h" />
   </ItemGroup>

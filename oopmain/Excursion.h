@@ -10,9 +10,9 @@
 
 class Excursion {
 public:
-    virtual std::vector<SpaceObject*> getRoute() = 0;
     virtual SpaceObject* getCurrentObject() = 0;
-    virtual std::string getDescription() = 0;
+    virtual void goToNextObject() = 0;
+    virtual bool isFinished() = 0;
     virtual ~Excursion() {}
 };
 

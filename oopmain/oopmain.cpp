@@ -8,6 +8,7 @@
 #include "LinearExcursion.h"
 #include "Visitor.h"
 #include "AudioFile.h"
+#include "SpaceObjectProxy.h"
 #include <vector>
 #include <windows.h>
 #include <locale>
@@ -17,51 +18,32 @@ int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
 
-    // создание объектов Земля и Солнце
-    Planet* earth = new Planet("Земля", 6378.0);
-    Star* sun = new Star("Солнце", 696340.0, 5778);
-    //Planet* mars = new Planet("Марс", 3389.5);
-    Satelite* moon = new Satelite("Луна", earth);
+    //SpaceObject* sunProxy = new SpaceObjectProxy("Солнце", 6000, SpaceObjectType::Star);
+    SpaceObject* earthProxy = new SpaceObjectProxy("Земля", SpaceObjectType::Planet, 6378);
+    SpaceObject* marsProxy = new SpaceObjectProxy("Марс", SpaceObjectType::Planet, 3389);
+    SpaceObject* moonProxy = new SpaceObjectProxy("Луна", "Земля", SpaceObjectType::Satelite);
 
-    earth->display();
-    sun->display();
-    //mars->display();
+    std::vector<SpaceObject*> objects = { /*sunProxy ,*/ earthProxy, marsProxy, moonProxy};
+    LinearExcursion* tour = new LinearExcursion(objects);
 
-    std::vector<SpaceObject*> routeSolarSystem;
-    routeSolarSystem.push_back(sun);
-    routeSolarSystem.push_back(earth);
-    routeSolarSystem.push_back(moon);
-    //routeSolarSystem.push_back(mars);
-    try {
-        LinearExcursion* solarSystemExcursion = new LinearExcursion(routeSolarSystem, "Путешествие по Солнечной Системе.");
-        Scene* scene = Scene::getInstance(solarSystemExcursion);
-        scene->displayScene();
-        // создание посетителя
-        Visitor* visitor = new Visitor("Турист");
-        for (SpaceObject* obj : routeSolarSystem) {
-            visitor->visit(obj);
+    while (!tour->isFinished()) {
+        SpaceObject* current = tour->getCurrentObject();
+        if (current != nullptr) {
+            std::cout << "Сейчас отображается: " << current->getName() << "\n";
+            current->display();
+            current->playAudio();
+            std::cout << current->getDescription() << "\n";
         }
-        delete solarSystemExcursion; // удаляем вручную
-        delete visitor;
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Ошибка при создании экскурсии: " << e.what() << std::endl;
-    }
-    catch (...) {
-        std::cerr << "Неизвестная ошибка!" << std::endl;
+        tour->goToNextObject();
     }
 
-    AudioFile* song = new AudioFile("source/audio/sunSound", 50);
-    std::cout << std::endl;
-    song->setVolume(15);
-    song->play();
-    song->stop();
-
-    // очень важно освободить память вручную, так как конструкторы в C++ не делают это автоматически
-    delete earth;
-    delete sun;
-    delete moon;
-    //delete mars;
+    // удаляем прокси, а они сами удаляют реальный объект
+    delete tour;
+    //delete sunProxy;
+    delete earthProxy;
+    delete marsProxy;
+    delete moonProxy;
+    
     return 0;
 }
 

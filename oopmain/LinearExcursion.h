@@ -11,43 +11,28 @@
 class LinearExcursion : public Excursion {
 private:
     std::vector<SpaceObject*> route;
-    std::vector<Visitor*> visitors;
-    int currentObjectNumber;
-    std::string description;
-    SpaceObject* currentObject;
-
+    int currentObjectIndex;
 
 public:
-    LinearExcursion(std::vector<SpaceObject*> route, std::string description) : route(route), description(description), currentObjectNumber(0) {
-        if (!route.empty()) {
-            currentObject = route[0];
-        }
-        else {
-            std::cout << "Маршрут экскурсии пуст!" << std::endl;
-            currentObject = nullptr;
-        }
-    }
-
-    std::vector<SpaceObject*> getRoute() override {
-        return route;
-    }
-
-    std::string getDescription() override {
-        return description;
-    }
+    LinearExcursion(const std::vector<SpaceObject*>& objects) : route(objects), currentObjectIndex(0) {}
 
     SpaceObject* getCurrentObject() override {
-        return currentObject;
-    }
-
-    void getToNextObject() {
-        if (currentObjectNumber + 1 < route.size()) {
-            currentObjectNumber++;
-            currentObject = route[currentObjectNumber];
+        if (currentObjectIndex < route.size()) {
+            return route[currentObjectIndex];
         }
         else {
-            std::cout << "В экскурсии нет следующего объекта" << std::endl;
+            return nullptr; // Экскурсия закончена
         }
+    }
+
+    void goToNextObject() override {
+        if (currentObjectIndex < route.size()) {
+            currentObjectIndex++;
+        }
+    }
+
+    bool isFinished() override {
+        return currentObjectIndex >= route.size();
     }
 };
 
