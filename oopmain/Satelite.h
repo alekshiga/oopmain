@@ -11,18 +11,25 @@
 class Satelite : public SpaceObject {
 private:
     std::string name;
-    Planet* planet;
+    //исправлена логическая ошибка: если спутник хранит в себе указатель на родительскую планету, то без создания родительской планеты невозможно создать спутник
+    std::string parentPlanetName;
     AudioFile* audioFile;
+    SpaceObjectType type = SpaceObjectType::Satelite;
 
 public:
-    Satelite(std::string name, Planet* planet, AudioFile* audioFile) : name(name), planet(planet), audioFile(audioFile) {}
+    Satelite(std::string name, std::string parentPlanetName, AudioFile* audioFile) : name(name), parentPlanetName(parentPlanetName), audioFile(audioFile) {}
 
     void display() override {
         std::cout << "Отображение спутника: " << name << "\n";
     }
 
     std::string getDescription() override {
-        return "Название спутника: " + name + ". Вращается вокруг: " + planet->getName() + "\n";
+        return "Название спутника: " + name + ". Вращается вокруг: " + parentPlanetName + "\n";
+    }
+
+    void getAdditionalInfo() override {
+        std::cout << "Дополнительная информация" << std::endl;
+        std::cout << "Пока что нет дополнительной информации о спутнике" << std::endl;
     }
 
     std::string getName() override {

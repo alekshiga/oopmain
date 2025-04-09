@@ -1,25 +1,17 @@
 #include "Scene.h"
 #include "Excursion.h"
 #include "SpaceObject.h"
+#include "SpaceObjectType.h"
+#include "Planet.h"
 #include <iostream>
 #include <algorithm> 
 
 // реализация методов Scene
 
-// инициализация статической переменной, чтобы потом получить сущность сцены
-Scene* Scene::instance = nullptr;
-
 Scene::Scene(Excursion* excursion) : currentExcursion(excursion) {}
 
 Scene::~Scene() {
     delete currentExcursion;
-}
-
-Scene* Scene::getInstance(Excursion* excursion) {
-    if (instance == nullptr) {
-        instance = new Scene(excursion);
-    }
-    return instance;
 }
 
 void Scene::displayScene() {
@@ -36,5 +28,11 @@ Excursion* Scene::getCurrentExcursion() const {
 
 void Scene::setCurrentExcursion(Excursion* excursion) {
     currentExcursion = excursion;
+}
+
+void Scene::requestMoreInfo() {
+    SpaceObject* object = Scene::currentExcursion->getCurrentObject();
+    //  Получаем доп. информацию от экскурсии
+    object->getAdditionalInfo();
 }
 

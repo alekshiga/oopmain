@@ -17,7 +17,6 @@ private:
     int temperature;
     std::string composition;
     std::string parentPlanetName;
-    std::map<std::string, Planet*> planets;
     SpaceObjectType type;
     SpaceObject* realObject; // указатель на реальный объект, который будет создаваться только при необходимости
 
@@ -59,17 +58,11 @@ public:
             break;
         case SpaceObjectType::Planet:
             audioFile = new AudioFile("planet_audio.mp3", 50);
-            planets[name] = new Planet(name, radius, audioFile);
-            realObject = planets[name];
+            realObject = new Planet(name, radius, true, audioFile);
             break;
         case SpaceObjectType::Satelite: {
-            Planet* parentPlanet = findPlanetByName(parentPlanetName);
-            if (parentPlanet == nullptr) {
-                std::cerr << "Ошибка: Не найдена родительская планета для спутника " << name << std::endl;
-                return;
-            }
             audioFile = new AudioFile("satelite_audio.mp3", 50);
-            realObject = new Satelite(name, parentPlanet, audioFile);
+            realObject = new Satelite(name, parentPlanetName, audioFile);
             break;
         }
         case SpaceObjectType::Asteroid:
@@ -86,8 +79,20 @@ public:
     void display() override {
         if (realObject == nullptr) {
             load();
+            if (realObject == nullptr) {
+                std::cerr << "Ошибка: не удалось загрузить realObject\n";
+            }
         }
         realObject->display();
+    }
+
+    void getAdditionalInfo() override {
+        // если объект ещё не создан, то вызываем метод display() для создания
+        if (realObject == nullptr) {
+            display();
+            std::cout << "Proxy: Загрузка дополнительной информации: " << name << "...\n";
+        }
+        realObject->getAdditionalInfo();
     }
 
     void playAudio() override {
@@ -97,16 +102,6 @@ public:
             std::cout << "Proxy: Загрузка аудио для " << name << "...\n";
         }
         realObject->playAudio();
-    }
-
-    Planet* findPlanetByName(const std::string& name) {
-        auto it = planets.find(name);
-        if (it != planets.end()) {
-            return it->second; // Возвращаем указатель на планету
-        }
-        else {
-            return nullptr; // Планета не найдена
-        }
     }
 
     std::string getDescription() override {

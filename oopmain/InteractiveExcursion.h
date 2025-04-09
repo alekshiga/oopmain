@@ -2,7 +2,7 @@
 #define INTERACTIVEEXCURSION_H
 
 #include "Excursion.h"
-#include "Visitor.h"
+#include "User.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -12,14 +12,14 @@ class SpaceObject;
 class InteractiveExcursion : public Excursion {
 private:
     std::vector<SpaceObject*> availableObjects;
-    std::vector<Visitor*> visitors;
+    std::vector<User*> users;
     SpaceObject* currentObject;
     std::string description;
 
 public:
     InteractiveExcursion(std::vector<SpaceObject*> availableObjects, std::string description) : availableObjects(availableObjects), currentObject(nullptr), description(description) {}
 
-    std::vector<SpaceObject*> getRoute() override {
+    std::vector<SpaceObject*> getRoute() {
         std::vector<SpaceObject*> currentRoute;
         if (currentObject != nullptr) {
             currentRoute.push_back(currentObject);

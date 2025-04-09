@@ -6,18 +6,24 @@
 #include <string>
 #include <iostream>
 
-class Visitor {
+class User {
 private:
     std::string name;
     int rating;
+    Scene* scene; // собственная сцена у каждого пользователя
 
 public:
-    Visitor(std::string name) : name(name) {
+    User(std::string name, Excursion* excursion) : name(name) {
         rating = 0;
+        scene = new Scene(excursion);
     }
     void visit(SpaceObject* spaceObject) {
         std::cout << name << " посещает Космический объект. Информация о посещаемом объекте: ";
         std::cout << spaceObject->getDescription() << std::endl;
+    }
+
+    Scene* getScene() {
+        return scene;
     }
 };
 

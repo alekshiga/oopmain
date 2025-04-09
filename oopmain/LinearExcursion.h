@@ -3,7 +3,7 @@
 #define LINEAREXCURSION_H
 
 #include "Excursion.h"
-#include "Visitor.h"
+#include "User.h"
 #include <vector>
 #include <string>
 #include <iostream>

@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Visitor.h">
+    <ClInclude Include="User.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">

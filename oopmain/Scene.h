@@ -7,14 +7,12 @@
 
 class Scene {
 private:
-    static Scene* instance;
     Excursion* currentExcursion;
-    Scene(Excursion* excursion); // приватный конструктор 
-
+    
 public:
-    ~Scene();  // деструктор
+    Scene(Excursion* excursion);
 
-    static Scene* getInstance(Excursion* excursion);
+    ~Scene();  // деструктор
 
     void displayScene();
 
@@ -23,6 +21,8 @@ public:
     Excursion* getCurrentExcursion() const;
 
     void setCurrentExcursion(Excursion* excursion);
+
+    void requestMoreInfo();
 };
 
 #endif
