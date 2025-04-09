@@ -71,6 +71,9 @@
     <ClInclude Include="SpaceObjectType.h">
       <Filter>Source Files\SpaceObjects</Filter>
     </ClInclude>
+    <ClInclude Include="QuizExcursion.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

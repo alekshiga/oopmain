@@ -14,6 +14,7 @@ class SpaceObjectProxy : public SpaceObject {
 private:
     std::string name;
     float radius;
+    bool life;
     int temperature;
     std::string composition;
     std::string parentPlanetName;
@@ -22,7 +23,7 @@ private:
 
 public:
     // перегрузки конструкторов для разных типов космических объектов
-    SpaceObjectProxy(std::string name, SpaceObjectType type, float radius): name(name), radius(radius), type(type), realObject(nullptr) {
+    SpaceObjectProxy(std::string name, SpaceObjectType type, bool life, float radius): name(name), radius(radius), type(type), life(life), realObject(nullptr) {
         temperature = 0;
         composition = "";
         parentPlanetName = "";
@@ -58,7 +59,7 @@ public:
             break;
         case SpaceObjectType::Planet:
             audioFile = new AudioFile("planet_audio.mp3", 50);
-            realObject = new Planet(name, radius, true, audioFile);
+            realObject = new Planet(name, radius, life, audioFile);
             break;
         case SpaceObjectType::Satelite: {
             audioFile = new AudioFile("satelite_audio.mp3", 50);

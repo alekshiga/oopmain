@@ -7,8 +7,6 @@
 #include <string>
 #include <iostream>
 
-class SpaceObject;
-
 class InteractiveExcursion : public Excursion {
 private:
     std::vector<SpaceObject*> availableObjects;
