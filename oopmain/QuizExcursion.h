@@ -7,6 +7,7 @@
 #include <string>
 #include <random> 
 #include <algorithm> 
+#include <map>
 #include "Excursion.h"
 
 class QuizExcursion : public Excursion {
@@ -14,15 +15,13 @@ private:
     std::vector<SpaceObject*> route;
     int currentObjectIndex;
     int questionsPerObject;
-    std::vector<std::pair<SpaceObject*, std::vector<std::string>>> questions; // один или несколько вопрсоов для каждого объекта
-    std::mt19937 random; // генератор случайных чисел
+    std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>> questions; //  Вопрос и ответ
+    std::mt19937 random;
 
 public:
     QuizExcursion(const std::vector<SpaceObject*>& objects, int questionsPerObject)
         : route(objects), currentObjectIndex(0), questionsPerObject(questionsPerObject), random(std::random_device{}()) {
-        // questions заполняется позже с помощью setQuestions
-        // или через загрузку из файла
-        std::cout << "Создана QuizExcursion с " << questionsPerObject << " вопросами на объект" << std::endl;
+        // пишем вопросы вручную или загружаем через файл
     }
 
     ~QuizExcursion() {} // деструктор
@@ -47,23 +46,32 @@ public:
     }
 
     // Метод для получения вопросов для текущего объекта
-    std::vector<std::string> getQuestionsForCurrentObject() {
+    std::vector<std::pair<std::string, std::string>> getQuestionsForCurrentObject() {
         SpaceObject* currentObject = getCurrentObject();
-        if (currentObject) {
-            // Находим вопросы для текущего объекта
-            for (const auto& pair : questions) {
-                if (pair.first == currentObject) {
-                    // возвращаем перемешанный список вопросов
-                    return getRandomizedQuestions(pair.second);
-                }
-            }
-            std::cout << "Нет вопросов для объекта " << currentObject->getName() << std::endl;
+        if (currentObject && questions.count(currentObject)) {
+            return questions[currentObject];
         }
-        return {}; // пустой вектор если вопросов нет
+        else {
+            std::cout << "Для данного объекта вопросов нет" << std::endl;
+            return {}; // Возвращаем пустой вектор, если нет вопросов
+        }
+        
     }
 
-    void setQuestions(const std::vector<std::pair<SpaceObject*, std::vector<std::string>>>& newQuestions) {
+    void setQuestions(const std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>>& newQuestions) {
         questions = newQuestions;
+    }
+
+    // Метод для проверки ответа
+    bool checkAnswer(SpaceObject* object, const std::string& userAnswer) {
+        if (questions.count(object)) {
+            for (const auto& questionAnswerPair : questions[object]) {
+                if (questionAnswerPair.second == userAnswer) { // Сравниваем с правильным ответом
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 private:

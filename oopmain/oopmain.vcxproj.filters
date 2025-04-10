@@ -22,29 +22,29 @@
     <Filter Include="Source Files\Excursion">
       <UniqueIdentifier>{f9429197-33fe-4a94-a396-31aee1c45c49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\main">
+      <UniqueIdentifier>{f33d0dc0-8536-4a5f-9480-cf5c8eef11af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="oopmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\main</Filter>
+    </ClCompile>
+    <ClCompile Include="oopmain.cpp">
+      <Filter>Source Files\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="User.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Star.h">
+      <Filter>Source Files\SpaceObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Asteroid.h">
+    <ClInclude Include="Satelite.h">
       <Filter>Source Files\SpaceObjects</Filter>
     </ClInclude>
     <ClInclude Include="Planet.h">
       <Filter>Source Files\SpaceObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Star.h">
+    <ClInclude Include="Asteroid.h">
       <Filter>Source Files\SpaceObjects</Filter>
     </ClInclude>
     <ClInclude Include="SpaceObject.h">
@@ -53,11 +53,8 @@
     <ClInclude Include="SpaceObjectProxy.h">
       <Filter>Source Files\SpaceObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Satelite.h">
+    <ClInclude Include="SpaceObjectType.h">
       <Filter>Source Files\SpaceObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioFile.h">
-      <Filter>Source Files\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Excursion.h">
       <Filter>Source Files\Excursion</Filter>
@@ -68,10 +65,19 @@
     <ClInclude Include="LinearExcursion.h">
       <Filter>Source Files\Excursion</Filter>
     </ClInclude>
-    <ClInclude Include="SpaceObjectType.h">
-      <Filter>Source Files\SpaceObjects</Filter>
-    </ClInclude>
     <ClInclude Include="QuizExcursion.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioFile.h">
+      <Filter>Source Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Source Files\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Source Files\main</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomExcursion.h">
       <Filter>Source Files\Excursion</Filter>
     </ClInclude>
   </ItemGroup>

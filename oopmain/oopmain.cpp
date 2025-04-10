@@ -9,9 +9,11 @@
 #include "Excursion.h"
 #include "LinearExcursion.h"
 #include "QuizExcursion.h"
+#include "RandomExcursion.h"
 #include "User.h"
 #include "AudioFile.h"
 #include "SpaceObjectProxy.h"
+
 #include <vector>
 #include <locale>
 #include <limits>
@@ -32,47 +34,80 @@ int main() {
     QuizExcursion* quizExcursion = new QuizExcursion(objects, 1);
 
     //создаём список вопросов
-    std::vector<std::pair<SpaceObject*, std::vector<std::string>>> questions;
+    std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>> questions;
 
-    questions.push_back({ sunProxy, {"Какая температура поверхности солнца?"}});
-    questions.push_back({ earthProxy, {"Есть ли жизнь на земле?"} });
-    questions.push_back({ marsProxy, {"Есть ли жизнь на Марсе?"} });
+    questions[sunProxy] = { {"Какая температура поверхности солнца?", "6000"} };
+    questions[earthProxy] = { {"Есть ли жизнь на земле?", "да"} };
+    questions[marsProxy] = { {"Есть ли жизнь на Марсе?", "нет"} };
 
     quizExcursion->setQuestions(questions);
 
+    std::cout << "Начнём квиз-экскурсию!" << std::endl;
     User* user1 = new User("alekshiga", quizExcursion);
 
     while (!quizExcursion->isFinished()) {
         SpaceObject* currentObject = quizExcursion->getCurrentObject();
+        if (currentObject) {
+            std::cout << "Объект: " << currentObject->getName() << std::endl;
+            auto questionAnswerPairs = quizExcursion->getQuestionsForCurrentObject();
 
-        if (currentObject != nullptr) {
-            std::cout << "Вопросы для " << currentObject->getName() << ":" << std::endl;
-            std::vector<std::string> currentQuestions = quizExcursion->getQuestionsForCurrentObject();
+            if (!questionAnswerPairs.empty()) {
+                std::string question = questionAnswerPairs[0].first; // Берем первый вопрос
+                std::string correctAnswer = questionAnswerPairs[0].second; // Берем первый ответ
 
-            if (!currentQuestions.empty()) {
-                for (size_t i = 0; i < currentQuestions.size(); ++i) { // Используем size_t для индексов
-                    std::cout << "- " << currentQuestions[i] << std::endl;
-                }
-
-                std::string answer;
+                std::cout << "Вопрос: " << question << std::endl;
+                std::string userAnswer;
                 std::cout << "Ваш ответ: ";
-                std::getline(std::cin, answer); // Читаем строку целиком (включая пробелы)
+                std::getline(std::cin, userAnswer);
 
-                // ВАЖНО: Переходим к следующему объекту только после ответа на вопрос
-                quizExcursion->goToNextObject();
+                // Проверяем ответ и увеличиваем рейтинг, если правильно
+                if (quizExcursion->checkAnswer(currentObject, userAnswer)) {
+                    std::cout << "Правильно!" << std::endl;
+                    user1->increaseRating();  // Увеличиваем рейтинг пользователя
+                }
+                else {
+                    std::cout << "Неправильно. Правильный ответ: " << correctAnswer << std::endl;
+                }
+            }
 
-            }
-            else {
-                quizExcursion->goToNextObject(); // Все равно переходим к следующему объекту
-            }
+            quizExcursion->goToNextObject();
+        }
+        else {
+            std::cout << "Экскурсия окончена." << std::endl;
+            break;
+        }
+    }
+    std::cout << "Итоговый рейтинг: " << user1->getRating() << std::endl; // Выводим итоговый рейтинг
+
+    std::cout << "Начнём следующую случайную экскурсию!" << std::endl;
+
+    RandomExcursion* randomExcursion = new RandomExcursion(objects);
+    user1->setExcursion(randomExcursion);
+    char choice;
+    while (!randomExcursion->isFinished()) {
+        SpaceObject* currentObject = randomExcursion->getCurrentObject();
+        if (currentObject) {
+            std::cout << user1->getUsername() << " осматривает: " << currentObject->getName() << std::endl;
         }
         else {
             std::cout << "Экскурсия закончена." << std::endl;
-            break; // Выходим из цикла
+            break;
+        }
+
+        std::cout << "Посетить другой объект? (y/n): ";
+        std::cin >> choice;
+
+        if (choice == 'n') {
+            randomExcursion->finishExcursion();
+        }
+        else if (choice == 'y') {
+            continue;
+        }
+        else {
+            std::cout << "Некорректный ввод." << std::endl;
+            randomExcursion->finishExcursion();
         }
     }
-
-    std::cout << "Экскурсия завершена!" << std::endl;
 
     //// теперь пользователь сам управляет экскурсией через свою сцену и может завершить её раньше или позже остальных
     //while (!user1->getScene()->getCurrentExcursion()->isFinished() == true) {
@@ -107,6 +142,8 @@ int main() {
     delete marsProxy;
     delete moonProxy;
     delete user1;
+    delete randomExcursion;
+    delete quizExcursion;
     
     return 0;
 }

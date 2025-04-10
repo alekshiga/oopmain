@@ -1,74 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AudioFile">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+    <Position X="16.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACoAEAAAAAAgAACAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACoAAAAAEAAgAACAAA=</HashCode>
       <FileName>AudioFile.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Excursion">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAggAAAAAABAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAgAAAAAQAAAAAAAAAAAAAAAAIAAAAQAAAA=</HashCode>
       <FileName>Excursion.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InteractiveExcursion">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQggABAAIABAAgIAAEAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAQggABAAIABAAgAAAEAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>InteractiveExcursion.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LinearExcursion">
-    <Position X="2.5" Y="2.75" Width="1.5" />
+    <Position X="7.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAogAAAAIABAAAJAAAAJAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAgAAAACQAAAAABAAAAIAAAAAAAAAAQAAAA=</HashCode>
       <FileName>LinearExcursion.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Planet">
-    <Position X="3.5" Y="6.25" Width="1.5" />
+  <Class Name="QuizExcursion">
+    <Position X="12" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAgAAAAAAAAAAAAAAEEAAAAAAIEAAAAAAA=</HashCode>
-      <FileName>Planet.h</FileName>
+      <HashCode>gAAAAAgAAAwAAAADQAAAAABAAAQAAAAgAAQAAAQAEAA=</HashCode>
+      <FileName>QuizExcursion.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Scene">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAARgAAAAgAAAAEAAQABAAAQABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAARgAAAAgAAAAEAAQAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Scene.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SpaceObject">
-    <Position X="5.5" Y="4" Width="1.5" />
+  <Class Name="User">
+    <Position X="12" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAQAAAAAAEAAAAAAAAEAAAAAAA=</HashCode>
-      <FileName>SpaceObject.h</FileName>
+      <HashCode>AAABAAAAAAAAAAAAAAAEAIAAAQAMAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Star">
-    <Position X="5.5" Y="6.25" Width="1.5" />
+  <Class Name="Asteroid">
+    <Position X="14.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAgAAAAAAAAAAAAAAEEAAAAgAQEAAAAAAA=</HashCode>
-      <FileName>Star.h</FileName>
+      <HashCode>ACAAAAAAAAIgAAAAAAgAAAgAAAEFAAABAAAEAAAAAAA=</HashCode>
+      <FileName>Asteroid.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Visitor">
-    <Position X="8.5" Y="3.5" Width="1.5" />
+  <Class Name="Planet">
+    <Position X="19" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAAEAAAAAQAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Visitor.h</FileName>
+      <HashCode>ACEAAAAACAIgAAAAAAAAAAgAAAEFAAAAAAIEAAAAAAA=</HashCode>
+      <FileName>Planet.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Satelite">
-    <Position X="7.5" Y="6.25" Width="1.5" />
+    <Position X="23.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAABAAAAAAAAAAEEAgAAAAAEAAAAAAA=</HashCode>
+      <HashCode>ACAAAAAAAAIgAAABAIAAAAgAAAEFAAAAAAAEAAAAAAA=</HashCode>
       <FileName>Satelite.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="SpaceObject">
+    <Position X="19" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAIgAAAAAAAQAAgAAAEBAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>SpaceObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceObjectProxy">
+    <Position X="21.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACMAABAACIIgIAAAAIgAAAAAAAEFAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>SpaceObjectProxy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Star">
+    <Position X="16.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAIgAAAAAAAAAAgAAAEFAAAAgAQEAAAAAAA=</HashCode>
+      <FileName>Star.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SpaceObjectType">
+    <Position X="21" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAABgAIAAAAAAAA=</HashCode>
+      <FileName>SpaceObjectType.h</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

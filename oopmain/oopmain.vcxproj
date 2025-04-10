@@ -138,6 +138,7 @@
     <ClInclude Include="LinearExcursion.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="QuizExcursion.h" />
+    <ClInclude Include="RandomExcursion.h" />
     <ClInclude Include="Satelite.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpaceObject.h" />
