@@ -24,9 +24,9 @@ public:
         // пишем вопросы вручную или загружаем через файл
     }
 
-    ~QuizExcursion() {} // деструктор
+    ~QuizExcursion() override {} // деструктор
 
-    SpaceObject* getCurrentObject() {
+    SpaceObject* getCurrentObject() override {
         if (currentObjectIndex < route.size()) {
             return route[currentObjectIndex];
         }
@@ -35,13 +35,13 @@ public:
         }
     }
 
-    void goToNextObject() {
+    void goToNextObject() override {
         if (currentObjectIndex < route.size()) {
             currentObjectIndex++;
         }
     }
 
-    bool isFinished() {
+    bool isFinished() override {
         return currentObjectIndex >= route.size();
     }
 
@@ -55,7 +55,6 @@ public:
             std::cout << "Для данного объекта вопросов нет" << std::endl;
             return {}; // Возвращаем пустой вектор, если нет вопросов
         }
-        
     }
 
     void setQuestions(const std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>>& newQuestions) {
@@ -79,6 +78,43 @@ private:
         std::vector<std::string> randomizedQuestions = questions;
         std::shuffle(randomizedQuestions.begin(), randomizedQuestions.end(), random);
         return randomizedQuestions;
+    }
+
+public:
+    void startExcursion() override {
+        while (!isFinished()) {
+            SpaceObject* currentObject = getCurrentObject();
+            if (currentObject) {
+                std::cout << "Объект: " << currentObject->getName() << std::endl;
+                auto questionAnswerPairs = getQuestionsForCurrentObject();
+
+                if (!questionAnswerPairs.empty()) {
+                    std::string question = questionAnswerPairs[0].first; // Берем первый вопрос
+                    std::string correctAnswer = questionAnswerPairs[0].second; // Берем первый ответ
+
+                    std::cout << "Вопрос: " << question << std::endl;
+                    std::string userAnswer;
+                    std::cout << "Ваш ответ: ";
+                    std::getline(std::cin, userAnswer);
+
+                    // Проверяем ответ и увеличиваем рейтинг, если правильно
+                    if (checkAnswer(currentObject, userAnswer)) {
+                        std::cout << "Правильно!" << std::endl;
+                        // user->increaseRating();  // Увеличиваем рейтинг пользователя.  Где взять user?
+                        // ВАЖНО: Нужен указатель на User, чтобы увеличить рейтинг!
+                    }
+                    else {
+                        std::cout << "Неправильно. Правильный ответ: " << correctAnswer << std::endl;
+                    }
+                }
+
+                goToNextObject();
+            }
+            else {
+                std::cout << "Экскурсия окончена." << std::endl;
+                break;
+            }
+        }
     }
 };
 

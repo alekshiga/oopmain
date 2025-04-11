@@ -14,6 +14,7 @@ public:
     virtual void goToNextObject() = 0;
     virtual bool isFinished() = 0;
     virtual ~Excursion() {}
+    virtual void startExcursion() = 0;
 };
 
 #endif

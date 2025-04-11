@@ -36,3 +36,7 @@ void Scene::requestMoreInfo() {
     object->getAdditionalInfo();
 }
 
+void Scene::startExcursion() {
+    this->currentExcursion->startExcursion();
+}
+
