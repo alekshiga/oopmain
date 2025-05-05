@@ -1,12 +1,9 @@
 #pragma once
-#ifndef LINEAREXCURSION_H
-#define LINEAREXCURSION_H
 
 #include "Excursion.h"
-#include "User.h"
-#include <vector>
+#include "SpaceObject.h"
 #include <string>
-#include <iostream>
+#include <vector>
 
 class LinearExcursion : public Excursion {
 private:
@@ -14,26 +11,10 @@ private:
     int currentObjectIndex;
 
 public:
-    LinearExcursion(const std::vector<SpaceObject*>& objects) : route(objects), currentObjectIndex(0) {}
+    LinearExcursion(const std::vector<SpaceObject*>& objects);
 
-    SpaceObject* getCurrentObject() override {
-        if (currentObjectIndex < route.size()) {
-            return route[currentObjectIndex];
-        }
-        else {
-            return nullptr; // Ёкскурси€ закончена
-        }
-    }
-
-    void goToNextObject() override {
-        if (currentObjectIndex < route.size()) {
-            currentObjectIndex++;
-        }
-    }
-
-    bool isFinished() override {
-        return currentObjectIndex >= route.size();
-    }
+    SpaceObject* getCurrentObject() override;
+    void goToNextObject() override;
+    bool isFinished() override;
+    void startExcursion() override;
 };
-
-#endif

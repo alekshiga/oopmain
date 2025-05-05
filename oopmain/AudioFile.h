@@ -1,7 +1,6 @@
 #pragma once
-#ifndef AUDIOFILE_H
-#define AUDIOFILE_H
-#include <iostream>
+
+#include <string>
 
 class AudioFile {
 private:
@@ -9,22 +8,9 @@ private:
     int volume;
 
 public:
-    AudioFile(std::string fileName, int volume) : fileName(fileName), volume(volume) {}
+    AudioFile(std::string fileName, int volume);
 
-    void play() {
-        std::cout << "Проигрывание аудио: " << fileName << " на громкости " << volume << "\n";
-    }
-    
-    void stop() {
-        std::cout << "Остановка аудио: " << fileName << "\n";
-    }
-    void setVolume(int volume) {
-        this->volume = volume;
-        std::cout << "Громкость: " << volume << "\n";
-    };
+    void play();
+    void stop();
+    void setVolume(int volume);
 };
-
-
-
-
-#endif

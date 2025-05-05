@@ -1,10 +1,12 @@
-#pragma once
-#ifndef VISITOR_H
-#define VISITOR_H
+#ifndef USER_H
+#define USER_H
 
 #include "SpaceObject.h"
 #include <string>
-#include <iostream>
+
+class SpaceObject;
+class Scene;
+class Excursion;
 
 class User {
 private:
@@ -13,34 +15,14 @@ private:
     Scene* scene; // собственная сцена у каждого пользователя
 
 public:
-    User(std::string username, Excursion* excursion) : username(username) {
-        rating = 0;
-        scene = new Scene(excursion);
-    }
-    void visit(SpaceObject* spaceObject) {
-        std::cout << username << " посещает Космический объект. Информация о посещаемом объекте: ";
-        std::cout << spaceObject->getDescription() << std::endl;
-    }
+    User(std::string username, Excursion* excursion);
 
-    Scene* getScene() const {
-        return scene;
-    }
-
-    void setExcursion(Excursion* excursion) {
-        this->scene->setCurrentExcursion(excursion);
-    }
-
-    std::string getUsername() const {
-        return this->username;
-    }
-
-    int getRating() const {
-        return this->rating;
-    }
-
-    void increaseRating() {
-        this->rating++;
-    }
+    void visit(SpaceObject* spaceObject);
+    Scene* getScene() const;
+    void setExcursion(Excursion* excursion);
+    std::string getUsername() const;
+    int getRating() const;
+    void increaseRating();
 };
 
 #endif

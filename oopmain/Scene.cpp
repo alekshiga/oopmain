@@ -1,12 +1,7 @@
 #include "Scene.h"
 #include "Excursion.h"
 #include "SpaceObject.h"
-#include "SpaceObjectType.h"
-#include "Planet.h"
 #include <iostream>
-#include <algorithm> 
-
-// реализация методов Scene
 
 Scene::Scene(Excursion* excursion) : currentExcursion(excursion) {}
 
@@ -31,12 +26,10 @@ void Scene::setCurrentExcursion(Excursion* excursion) {
 }
 
 void Scene::requestMoreInfo() {
-    SpaceObject* object = Scene::currentExcursion->getCurrentObject();
-    //  Получаем доп. информацию от экскурсии
+    SpaceObject* object = currentExcursion->getCurrentObject();
     object->getAdditionalInfo();
 }
 
 void Scene::startExcursion() {
-    this->currentExcursion->startExcursion();
+    currentExcursion->startExcursion();
 }
-

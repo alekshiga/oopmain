@@ -1,12 +1,9 @@
 #pragma once
-#ifndef EXCURSION_H
-#define EXCURSION_H
 
-#include <vector>
-#include <string>
 #include "SpaceObject.h"
+#include <string>
 
-// интерфейс, который реализуют разные классы экскурсий
+class SpaceObject;
 
 class Excursion {
 public:
@@ -16,5 +13,3 @@ public:
     virtual ~Excursion() {}
     virtual void startExcursion() = 0;
 };
-
-#endif

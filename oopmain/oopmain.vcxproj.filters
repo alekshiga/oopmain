@@ -33,6 +33,42 @@
     <ClCompile Include="oopmain.cpp">
       <Filter>Source Files\main</Filter>
     </ClCompile>
+    <ClCompile Include="AudioFile.cpp">
+      <Filter>Source Files\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Satelite.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceObjectProxy.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\main</Filter>
+    </ClCompile>
+    <ClCompile Include="Planet.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceObject.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractiveExcursion.cpp">
+      <Filter>Source Files\Excursion</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearExcursion.cpp">
+      <Filter>Source Files\Excursion</Filter>
+    </ClCompile>
+    <ClCompile Include="QuizExcursion.cpp">
+      <Filter>Source Files\Excursion</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomExcursion.cpp">
+      <Filter>Source Files\Excursion</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Star.h">

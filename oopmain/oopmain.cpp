@@ -29,7 +29,7 @@ int main() {
     SpaceObject* marsProxy = new SpaceObjectProxy("Марс", SpaceObjectType::Planet, false, 3389);
     SpaceObject* moonProxy = new SpaceObjectProxy("Луна", "Земля", SpaceObjectType::Satelite);
 
-    std::vector<SpaceObject*> objects = {sunProxy , earthProxy, marsProxy, moonProxy};
+    std::vector<SpaceObject*> objects = { sunProxy , earthProxy, marsProxy, moonProxy };
 
     QuizExcursion* quizExcursion = new QuizExcursion(objects, 1);
     RandomExcursion* randomExcursion = new RandomExcursion(objects);
@@ -60,7 +60,6 @@ int main() {
     delete user1;
     delete randomExcursion;
     delete quizExcursion;
-    
+
     return 0;
 }
-

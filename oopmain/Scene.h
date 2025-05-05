@@ -1,17 +1,17 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <vector>
-#include <string>
+#include "SpaceObject.h"
 #include "Excursion.h"
+#include <string>
 
 class Scene {
 private:
     Excursion* currentExcursion;
-    
+
 public:
     Scene(Excursion* excursion);
-    ~Scene();  // деструктор
+    ~Scene();
     void displayScene();
     std::string getDescription() const;
     Excursion* getCurrentExcursion() const;

@@ -127,8 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="AudioFile.cpp" />
+    <ClCompile Include="InteractiveExcursion.cpp" />
+    <ClCompile Include="LinearExcursion.cpp" />
     <ClCompile Include="oopmain.cpp" />
+    <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="QuizExcursion.cpp" />
+    <ClCompile Include="RandomExcursion.cpp" />
+    <ClCompile Include="Satelite.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SpaceObject.cpp" />
+    <ClCompile Include="SpaceObjectProxy.cpp" />
+    <ClCompile Include="Star.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
