@@ -64,7 +64,6 @@ void RandomExcursion::startExcursion() {
                     break;
                 }
                 else if (choice == 'n') {
-                    // Don't go to the next object, just finish the excursion.
                     break;
                 }
                 else {
