@@ -4,11 +4,16 @@
 #include <iostream>
 #include <limits>
 
-InteractiveExcursion::InteractiveExcursion(ExcursionRoute* availableObjectsRoute, std::string description) : availableObjectsRoute(availableObjectsRoute), currentObject(nullptr), description(description), finished(false) {}
+InteractiveExcursion::InteractiveExcursion(ExcursionRoute* availableObjectsRoute, std::string description)
+    : Excursion(availableObjectsRoute),  // Вызываем конструктор Excursion с availableObjectsRoute
+    availableObjectsRoute(availableObjectsRoute),
+    currentObject(nullptr),
+    description(description),
+    finished(false) {
+}
 
 InteractiveExcursion::~InteractiveExcursion() {
-
-    delete availableObjectsRoute;
+    //delete availableObjectsRoute; // НЕ УДАЛЯТЬ!  Удаление происходит в main()
 }
 
 std::vector<SpaceObject*> InteractiveExcursion::getRoute() {
@@ -60,7 +65,7 @@ void InteractiveExcursion::startExcursion() {
 
     while (!finished) {
         std::cout << "\nДоступные объекты:" << std::endl;
-        const std::vector<SpaceObject*>& availableObjects = availableObjectsRoute->getObjects(); 
+        const std::vector<SpaceObject*>& availableObjects = availableObjectsRoute->getObjects();
         for (size_t i = 0; i < availableObjects.size(); ++i) {
             std::cout << i + 1 << ". " << availableObjects[i]->getName() << std::endl;
         }

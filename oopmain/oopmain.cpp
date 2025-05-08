@@ -55,23 +55,20 @@ int main() {
     milkyWay->add(marsProxy);
     milkyWay->display();
 
-    QuizExcursion* quizExcursion = new QuizExcursion(route, 1);
-
-    //создаём список вопросов
+    // Теперь создание вопросов происходит в конструкторе QuizExcursion
+    Excursion* quizExcursion = new QuizExcursion(route, 1); // Больше не требует questions
     std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>> questions;
 
     questions[sunProxy] = { {"Какая температура поверхности солнца?", "6000"} };
     questions[earthProxy] = { {"Есть ли жизнь на земле?", "да"} };
     questions[marsProxy] = { {"Есть ли жизнь на Марсе?", "нет"} };
 
-    quizExcursion->setQuestions(questions);
-
     std::cout << "Начнём квиз-экскурсию!" << std::endl;
     User* user1 = new User("alekshiga", quizExcursion);
     user1->getScene()->startExcursion();
 
     std::cout << "Начнём следующую случайную экскурсию!" << std::endl;
-    RandomExcursion* randomExcursion = new RandomExcursion(route);
+    Excursion* randomExcursion = new RandomExcursion(route);
     user1->getScene()->setCurrentExcursion(randomExcursion);
     user1->getScene()->startExcursion();
 

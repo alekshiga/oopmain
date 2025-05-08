@@ -12,7 +12,6 @@
 
 class QuizExcursion : public Excursion {
 private:
-    ExcursionRoute* route; 
     int questionsPerObject;
     Iterator* iterator;
     std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>> questions;
@@ -20,6 +19,7 @@ private:
 
     std::vector<std::string> getRandomizedQuestions(const std::vector<std::string>& questions);
     bool checkAnswer(SpaceObject* object, const std::string& userAnswer);
+    void createQuestions();
 
 public:
     QuizExcursion(ExcursionRoute* route, int questionsPerObject);
@@ -28,8 +28,7 @@ public:
     void goToNextObject();
     bool isFinished();
     std::vector<std::pair<std::string, std::string>> getQuestionsForCurrentObject();
-    void setQuestions(const std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>>& newQuestions);
-    void startExcursion();
+    void startExcursion() override;
 };
 
 #endif

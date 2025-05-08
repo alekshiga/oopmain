@@ -8,7 +8,8 @@
 #include <limits>
 
 RandomExcursion::RandomExcursion(ExcursionRoute* route)
-    : route(route),
+    : Excursion(route),   // Вызываем конструктор Excursion с route
+    route(route),
     random(std::random_device{}()),
     iterator(nullptr)
 {
@@ -78,4 +79,3 @@ void RandomExcursion::startExcursion() {
         }
     }
 }
-

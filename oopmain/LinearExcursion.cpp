@@ -4,7 +4,11 @@
 #include "ExcursionRoute.h"
 #include <iostream>
 
-LinearExcursion::LinearExcursion(ExcursionRoute* route) : route(route), iterator(route->createIterator()) {}
+LinearExcursion::LinearExcursion(ExcursionRoute* route)
+    : Excursion(route),   // Вызываем конструктор Excursion с route
+    route(route),
+    iterator(route->createIterator()) {
+}
 
 LinearExcursion::~LinearExcursion() {
     delete iterator;

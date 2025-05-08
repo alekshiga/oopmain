@@ -8,7 +8,11 @@
 #include <limits>
 
 QuizExcursion::QuizExcursion(ExcursionRoute* route, int questionsPerObject)
-    : route(route), questionsPerObject(questionsPerObject), random(std::random_device{}()), iterator(route->createIterator()) {
+    : Excursion(route),
+    questionsPerObject(questionsPerObject),
+    random(std::random_device{}()),
+    iterator(route->createIterator()) {
+    createQuestions();
 }
 
 QuizExcursion::~QuizExcursion() {
@@ -39,10 +43,6 @@ std::vector<std::pair<std::string, std::string>> QuizExcursion::getQuestionsForC
         std::cout << "Для данного объекта вопросов нет" << std::endl;
         return {};
     }
-}
-
-void QuizExcursion::setQuestions(const std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>>& newQuestions) {
-    questions = newQuestions;
 }
 
 bool QuizExcursion::checkAnswer(SpaceObject* object, const std::string& userAnswer) {
@@ -92,5 +92,41 @@ void QuizExcursion::startExcursion() {
             std::cout << "Экскурсия окончена." << std::endl;
             break;
         }
+    }
+}
+
+void QuizExcursion::createQuestions() {
+    questions.clear();
+
+    // Находим нужные объекты на маршруте
+    SpaceObject* sun = nullptr;
+    SpaceObject* earth = nullptr;
+    SpaceObject* mars = nullptr;
+
+    Iterator* tempIterator = route->createIterator(); // Используем route, который является членом Excursion
+    while (!tempIterator->isDone()) {
+        SpaceObject* obj = tempIterator->current();
+        if (obj->getName() == "Солнце") {
+            sun = obj;
+        }
+        else if (obj->getName() == "Земля") {
+            earth = obj;
+        }
+        else if (obj->getName() == "Марс") {
+            mars = obj;
+        }
+        tempIterator->next();
+    }
+    delete tempIterator;
+
+    // Создаем вопросы для найденных объектов
+    if (sun) {
+        questions[sun] = { {"Какая температура поверхности солнца?", "6000"} };
+    }
+    if (earth) {
+        questions[earth] = { {"Есть ли жизнь на земле?", "да"} };
+    }
+    if (mars) {
+        questions[mars] = { {"Есть ли жизнь на Марсе?", "нет"} };
     }
 }
