@@ -1,13 +1,18 @@
 #include "LinearExcursion.h"
 #include "SpaceObject.h"
 #include "AudioFile.h"
+#include "ExcursionRoute.h"
 #include <iostream>
 
-LinearExcursion::LinearExcursion(const std::vector<SpaceObject*>& objects) : route(objects), currentObjectIndex(0) {}
+LinearExcursion::LinearExcursion(ExcursionRoute* route) : route(route), iterator(route->createIterator()) {}
+
+LinearExcursion::~LinearExcursion() {
+    delete iterator;
+}
 
 SpaceObject* LinearExcursion::getCurrentObject() {
-    if (currentObjectIndex < route.size()) {
-        return route[currentObjectIndex];
+    if (!iterator->isDone()) {
+        return iterator->current();
     }
     else {
         return nullptr; // Ёкскурси€ закончена
@@ -15,18 +20,16 @@ SpaceObject* LinearExcursion::getCurrentObject() {
 }
 
 void LinearExcursion::goToNextObject() {
-    if (currentObjectIndex < route.size()) {
-        currentObjectIndex++;
-    }
+    iterator->next();
 }
 
 bool LinearExcursion::isFinished() {
-    return currentObjectIndex >= route.size();
+    return iterator->isDone();
 }
 
 void LinearExcursion::startExcursion() {
-    for (SpaceObject* object : route) {
+    for (SpaceObject* object = iterator->first(); !iterator->isDone(); object = iterator->next()) {
         object->display();
-        object->audioFile->play();
+        if (object->audioFile) object->audioFile->play();
     }
 }

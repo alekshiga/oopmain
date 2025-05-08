@@ -1,38 +1,50 @@
 #include "RandomExcursion.h"
 #include "SpaceObject.h"
+#include "Iterator.h"
 #include <iostream>
 #include <vector>
 #include <random>
+#include <algorithm>
 #include <limits>
 
-RandomExcursion::RandomExcursion(const std::vector<SpaceObject*>& objects) : route(objects), random(std::random_device{}()) {
-    std::shuffle(route.begin(), route.end(), random);  // Перемешиваем объекты при создании
+RandomExcursion::RandomExcursion(ExcursionRoute* route)
+    : route(route),
+    random(std::random_device{}()),
+    iterator(nullptr)
+{
+    std::vector<SpaceObject*> tempObjects = route->getObjects();
+    std::shuffle(tempObjects.begin(), tempObjects.end(), random);
+
+    route->setObjects(tempObjects);
+    iterator = route->createIterator();
+
+    if (iterator) {
+        iterator->first();
+    }
 }
 
-RandomExcursion::~RandomExcursion() {}
+RandomExcursion::~RandomExcursion() {
+    delete iterator;
+}
 
 SpaceObject* RandomExcursion::getCurrentObject() {
-    if (currentObjectIndex < route.size() && !finished) {
-        return route[currentObjectIndex];
+    if (iterator && !iterator->isDone()) {
+        return iterator->current();
     }
     return nullptr;
 }
 
 void RandomExcursion::goToNextObject() {
-    if (currentObjectIndex < route.size() - 1) { // Ensure we don't go out of bounds.
-        currentObjectIndex++;
-    }
-    else {
-        finished = true; // No more objects to visit.
+    if (iterator) {
+        iterator->next();
     }
 }
 
 bool RandomExcursion::isFinished() {
-    return finished || currentObjectIndex >= route.size();
+    return !iterator || iterator->isDone();
 }
 
 void RandomExcursion::finishExcursion() {
-    finished = true;
 }
 
 void RandomExcursion::startExcursion() {
@@ -52,13 +64,14 @@ void RandomExcursion::startExcursion() {
                     break;
                 }
                 else if (choice == 'n') {
-                    finishExcursion();
+                    // Don't go to the next object, just finish the excursion.
                     break;
                 }
                 else {
                     std::cout << "Некорректный ввод. Пожалуйста, введите 'y' или 'n'." << std::endl;
                 }
             }
+            if (choice == 'n') break;
         }
         else {
             std::cout << "Экскурсия закончена." << std::endl;
@@ -66,3 +79,4 @@ void RandomExcursion::startExcursion() {
         }
     }
 }
+

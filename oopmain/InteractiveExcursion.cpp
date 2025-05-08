@@ -1,9 +1,15 @@
 #include "InteractiveExcursion.h"
 #include "SpaceObject.h"
+#include "Iterator.h"
 #include <iostream>
 #include <limits>
 
-InteractiveExcursion::InteractiveExcursion(std::vector<SpaceObject*> availableObjects, std::string description) : availableObjects(availableObjects), currentObject(nullptr), description(description), finished(false) {}
+InteractiveExcursion::InteractiveExcursion(ExcursionRoute* availableObjectsRoute, std::string description) : availableObjectsRoute(availableObjectsRoute), currentObject(nullptr), description(description), finished(false) {}
+
+InteractiveExcursion::~InteractiveExcursion() {
+
+    delete availableObjectsRoute;
+}
 
 std::vector<SpaceObject*> InteractiveExcursion::getRoute() {
     std::vector<SpaceObject*> currentRoute;
@@ -15,6 +21,8 @@ std::vector<SpaceObject*> InteractiveExcursion::getRoute() {
 
 void InteractiveExcursion::chooseNextObject(SpaceObject* nextObject) {
     bool found = false;
+    const std::vector<SpaceObject*>& availableObjects = availableObjectsRoute->getObjects();
+
     for (SpaceObject* obj : availableObjects) {  // Смотрим, доступен ли следующий объект
         if (obj == nextObject) {
             found = true;
@@ -38,8 +46,8 @@ std::string InteractiveExcursion::getDescription() {
 }
 
 void InteractiveExcursion::getToObject(int n) {
-    if (n > 0 && n <= availableObjects.size()) {
-        currentObject = availableObjects[n - 1];
+    if (n > 0 && n <= availableObjectsRoute->count()) {
+        currentObject = availableObjectsRoute->get(n - 1);
     }
     else {
         std::cerr << "Некорректный номер объекта." << std::endl;
@@ -52,6 +60,7 @@ void InteractiveExcursion::startExcursion() {
 
     while (!finished) {
         std::cout << "\nДоступные объекты:" << std::endl;
+        const std::vector<SpaceObject*>& availableObjects = availableObjectsRoute->getObjects(); 
         for (size_t i = 0; i < availableObjects.size(); ++i) {
             std::cout << i + 1 << ". " << availableObjects[i]->getName() << std::endl;
         }
@@ -67,7 +76,7 @@ void InteractiveExcursion::startExcursion() {
         else {
             try {
                 int objectNumber = std::stoi(input);
-                if (objectNumber > 0 && objectNumber <= availableObjects.size()) {
+                if (objectNumber > 0 && objectNumber <= availableObjectsRoute->count()) {
                     getToObject(objectNumber);
                     if (currentObject) {
                         std::cout << "Вы посетили: ";

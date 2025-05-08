@@ -3,6 +3,8 @@
 
 #include "Excursion.h"
 #include "SpaceObject.h"
+#include "ExcursionRoute.h"
+#include "Iterator.h"
 #include <string>
 #include <vector>
 
@@ -10,7 +12,7 @@ class SpaceObject;
 
 class InteractiveExcursion : public Excursion {
 private:
-    std::vector<SpaceObject*> availableObjects;
+    ExcursionRoute* availableObjectsRoute; 
     SpaceObject* currentObject;
     std::string description;
     bool finished;
@@ -18,7 +20,8 @@ private:
     void getToObject(int n);
 
 public:
-    InteractiveExcursion(std::vector<SpaceObject*> availableObjects, std::string description);
+    InteractiveExcursion(ExcursionRoute* availableObjectsRoute, std::string description);
+    ~InteractiveExcursion() override;
 
     std::vector<SpaceObject*> getRoute();
     void chooseNextObject(SpaceObject* nextObject);

@@ -1,33 +1,33 @@
 #include "QuizExcursion.h"
 #include "SpaceObject.h"
+#include "ExcursionRoute.h"
+#include "Iterator.h"
 #include <iostream>
 #include <random>
 #include <algorithm>
 #include <limits>
 
-QuizExcursion::QuizExcursion(const std::vector<SpaceObject*>& objects, int questionsPerObject)
-    : route(objects), currentObjectIndex(0), questionsPerObject(questionsPerObject), random(std::random_device{}()) {
+QuizExcursion::QuizExcursion(ExcursionRoute* route, int questionsPerObject)
+    : route(route), questionsPerObject(questionsPerObject), random(std::random_device{}()), iterator(route->createIterator()) {
 }
 
-QuizExcursion::~QuizExcursion() {}
+QuizExcursion::~QuizExcursion() {
+    delete iterator;
+}
 
 SpaceObject* QuizExcursion::getCurrentObject() {
-    if (currentObjectIndex < route.size()) {
-        return route[currentObjectIndex];
+    if (!iterator->isDone()) {
+        return iterator->current();
     }
-    else {
-        return nullptr;
-    }
+    return nullptr;
 }
 
 void QuizExcursion::goToNextObject() {
-    if (currentObjectIndex < route.size()) {
-        currentObjectIndex++;
-    }
+    iterator->next();
 }
 
 bool QuizExcursion::isFinished() {
-    return currentObjectIndex >= route.size();
+    return iterator->isDone();
 }
 
 std::vector<std::pair<std::string, std::string>> QuizExcursion::getQuestionsForCurrentObject() {
@@ -37,7 +37,7 @@ std::vector<std::pair<std::string, std::string>> QuizExcursion::getQuestionsForC
     }
     else {
         std::cout << "Для данного объекта вопросов нет" << std::endl;
-        return {}; // Возвращаем пустой вектор, если нет вопросов
+        return {};
     }
 }
 
@@ -48,7 +48,7 @@ void QuizExcursion::setQuestions(const std::map<SpaceObject*, std::vector<std::p
 bool QuizExcursion::checkAnswer(SpaceObject* object, const std::string& userAnswer) {
     if (questions.count(object)) {
         for (const auto& questionAnswerPair : questions[object]) {
-            if (questionAnswerPair.second == userAnswer) { // Сравниваем с правильным ответом
+            if (questionAnswerPair.second == userAnswer) {
                 return true;
             }
         }
@@ -70,19 +70,16 @@ void QuizExcursion::startExcursion() {
             auto questionAnswerPairs = getQuestionsForCurrentObject();
 
             if (!questionAnswerPairs.empty()) {
-                std::string question = questionAnswerPairs[0].first; // Берем первый вопрос
-                std::string correctAnswer = questionAnswerPairs[0].second; // Берем первый ответ
+                std::string question = questionAnswerPairs[0].first;
+                std::string correctAnswer = questionAnswerPairs[0].second;
 
                 std::cout << "Вопрос: " << question << std::endl;
                 std::string userAnswer;
                 std::cout << "Ваш ответ: ";
                 std::getline(std::cin, userAnswer);
 
-                // Проверяем ответ и увеличиваем рейтинг, если правильно
                 if (checkAnswer(currentObject, userAnswer)) {
                     std::cout << "Правильно!" << std::endl;
-                    // user->increaseRating();  // Увеличиваем рейтинг пользователя.  Где взять user?
-                    // ВАЖНО: Нужен указатель на User, чтобы увеличить рейтинг!
                 }
                 else {
                     std::cout << "Неправильно. Правильный ответ: " << correctAnswer << std::endl;

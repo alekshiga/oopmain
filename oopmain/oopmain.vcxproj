@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="AudioFile.cpp" />
+    <ClCompile Include="Composite.cpp" />
+    <ClCompile Include="ExcursionRoute.cpp" />
+    <ClCompile Include="ExcursionRouteIterator.cpp" />
     <ClCompile Include="InteractiveExcursion.cpp" />
     <ClCompile Include="LinearExcursion.cpp" />
     <ClCompile Include="oopmain.cpp" />
@@ -138,15 +141,21 @@
     <ClCompile Include="Satelite.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpaceObject.cpp" />
+    <ClCompile Include="SpaceObjectDecorator.cpp" />
     <ClCompile Include="SpaceObjectProxy.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="XMLToJSONAdapter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Aggregate.h" />
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="AudioFile.h" />
     <ClInclude Include="Excursion.h" />
+    <ClInclude Include="ExcursionRoute.h" />
+    <ClInclude Include="ExcursionRouteIterator.h" />
     <ClInclude Include="InteractiveExcursion.h" />
+    <ClInclude Include="Iterator.h" />
     <ClInclude Include="LinearExcursion.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="QuizExcursion.h" />

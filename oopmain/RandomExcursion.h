@@ -3,22 +3,22 @@
 
 #include "SpaceObject.h"
 #include "Excursion.h"
+#include "ExcursionRoute.h"
+#include "Iterator.h"
 #include <string>
 #include <vector>
 #include <random>
 
-class SpaceObject;
-
 class RandomExcursion : public Excursion {
 private:
-    std::vector<SpaceObject*> route;
+    ExcursionRoute* route;
+    Iterator* iterator; 
     std::mt19937 random;
-    int currentObjectIndex = 0;
     bool finished = false;
 
 public:
-    RandomExcursion(const std::vector<SpaceObject*>& objects);
-    ~RandomExcursion();
+    RandomExcursion(ExcursionRoute* route);
+    ~RandomExcursion() override;
 
     SpaceObject* getCurrentObject();
     void goToNextObject();

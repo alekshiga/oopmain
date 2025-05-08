@@ -1,6 +1,5 @@
-#include <iostream>
 #define NOMINMAX
-#include <windows.h>
+
 #include "SpaceObject.h"
 #include "Planet.h"
 #include "Star.h"
@@ -13,7 +12,13 @@
 #include "User.h"
 #include "AudioFile.h"
 #include "SpaceObjectProxy.h"
+#include "XMLToJSONAdapter.cpp"
+#include "SpaceObjectDecorator.cpp"
+#include "Composite.cpp"
+#include "Iterator.h"
 
+#include <iostream>
+#include <windows.h>
 #include <vector>
 #include <locale>
 #include <limits>
@@ -23,16 +28,34 @@ int main() {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
 
+    // пример использования Adapter
+    XMLToJSONAdapter adapter;
+    std::string jsonData = adapter.getSpaceObjectJSON("Солнце");
+    std::cout << "JSON Data: " << jsonData << std::endl;
+
     // создаём космические объекты
     SpaceObject* sunProxy = new SpaceObjectProxy("Солнце", 6000, SpaceObjectType::Star);
     SpaceObject* earthProxy = new SpaceObjectProxy("Земля", SpaceObjectType::Planet, true, 6378);
     SpaceObject* marsProxy = new SpaceObjectProxy("Марс", SpaceObjectType::Planet, false, 3389);
     SpaceObject* moonProxy = new SpaceObjectProxy("Луна", "Земля", SpaceObjectType::Satelite);
 
-    std::vector<SpaceObject*> objects = { sunProxy , earthProxy, marsProxy, moonProxy };
+    // пример использования Decorator
+    // оборачиваем объект
+    SpaceObject* highlightedSun = new HighlightDecorator(sunProxy);
+    SpaceObject* highlightedRotatingSun = new RotationDecorator(highlightedSun);
+    highlightedRotatingSun->display();
 
-    QuizExcursion* quizExcursion = new QuizExcursion(objects, 1);
-    RandomExcursion* randomExcursion = new RandomExcursion(objects);
+    std::vector<SpaceObject*> objects = { sunProxy , earthProxy, marsProxy, moonProxy };
+    ExcursionRoute* route = new ExcursionRoute(objects);
+
+    // составной объект Млечный путь
+    SpaceObject* milkyWay = new Galaxy("Млечный путь");
+    milkyWay->add(sunProxy);
+    milkyWay->add(earthProxy);
+    milkyWay->add(marsProxy);
+    milkyWay->display();
+
+    QuizExcursion* quizExcursion = new QuizExcursion(route, 1);
 
     //создаём список вопросов
     std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>> questions;
@@ -48,18 +71,21 @@ int main() {
     user1->getScene()->startExcursion();
 
     std::cout << "Начнём следующую случайную экскурсию!" << std::endl;
-
-    user1->setExcursion(randomExcursion);
+    RandomExcursion* randomExcursion = new RandomExcursion(route);
+    user1->getScene()->setCurrentExcursion(randomExcursion);
     user1->getScene()->startExcursion();
 
     // удаляем прокси, а они сами удаляют реальный объект если он был создан
-    delete sunProxy;
-    delete earthProxy;
-    delete marsProxy;
     delete moonProxy;
+    delete highlightedRotatingSun;
+    delete highlightedSun;
     delete user1;
-    delete randomExcursion;
     delete quizExcursion;
+    // когда вручную я удалял milkyWay, то он пытался удалить свои компоненты, которые уже были
+    // удалены парой строчек выше. Поэтому там я удалю только moonProxy
+    delete milkyWay;
+    delete route;
+    delete randomExcursion;
 
     return 0;
 }

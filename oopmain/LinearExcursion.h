@@ -2,16 +2,19 @@
 
 #include "Excursion.h"
 #include "SpaceObject.h"
+#include "ExcursionRoute.h"
+#include "Iterator.h"
 #include <string>
 #include <vector>
 
 class LinearExcursion : public Excursion {
 private:
-    std::vector<SpaceObject*> route;
-    int currentObjectIndex;
+    ExcursionRoute* route;
+    Iterator* iterator;
 
 public:
-    LinearExcursion(const std::vector<SpaceObject*>& objects);
+    LinearExcursion(ExcursionRoute* route);
+    ~LinearExcursion() override;
 
     SpaceObject* getCurrentObject() override;
     void goToNextObject() override;

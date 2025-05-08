@@ -3,18 +3,18 @@
 
 #include "SpaceObject.h"
 #include "Excursion.h"
+#include "ExcursionRoute.h"
+#include "Iterator.h"
 #include <string>
 #include <vector>
 #include <random>
 #include <map>
 
-class SpaceObject;
-
 class QuizExcursion : public Excursion {
 private:
-    std::vector<SpaceObject*> route;
-    int currentObjectIndex;
+    ExcursionRoute* route; 
     int questionsPerObject;
+    Iterator* iterator;
     std::map<SpaceObject*, std::vector<std::pair<std::string, std::string>>> questions;
     std::mt19937 random;
 
@@ -22,8 +22,8 @@ private:
     bool checkAnswer(SpaceObject* object, const std::string& userAnswer);
 
 public:
-    QuizExcursion(const std::vector<SpaceObject*>& objects, int questionsPerObject);
-    ~QuizExcursion();
+    QuizExcursion(ExcursionRoute* route, int questionsPerObject);
+    ~QuizExcursion() override;
     SpaceObject* getCurrentObject();
     void goToNextObject();
     bool isFinished();

@@ -25,6 +25,9 @@
     <Filter Include="Source Files\main">
       <UniqueIdentifier>{f33d0dc0-8536-4a5f-9480-cf5c8eef11af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{cbeff7cd-4d42-4517-ad4e-51ca74a2803a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -67,6 +70,21 @@
       <Filter>Source Files\Excursion</Filter>
     </ClCompile>
     <ClCompile Include="RandomExcursion.cpp">
+      <Filter>Source Files\Excursion</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLToJSONAdapter.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceObjectDecorator.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Composite.cpp">
+      <Filter>Source Files\SpaceObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcursionRoute.cpp">
+      <Filter>Source Files\Excursion</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcursionRouteIterator.cpp">
       <Filter>Source Files\Excursion</Filter>
     </ClCompile>
   </ItemGroup>
@@ -114,6 +132,18 @@
       <Filter>Source Files\main</Filter>
     </ClInclude>
     <ClInclude Include="RandomExcursion.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="Aggregate.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcursionRoute.h">
+      <Filter>Source Files\Excursion</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcursionRouteIterator.h">
       <Filter>Source Files\Excursion</Filter>
     </ClInclude>
   </ItemGroup>
